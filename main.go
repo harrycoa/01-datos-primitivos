@@ -4,46 +4,43 @@ import (
 	"fmt"
 )
 
-type pc struct {
-	ram    int
-	disk   int
-	memory int
-	brand  string
+type figuras2D interface {
+	area() float64
+}
+type cuadrado struct {
+	lado float64
 }
 
-func (myPC pc) ping() {
-	fmt.Println(myPC.brand, "ping")
+type rectangulo struct {
+	base, altura float64
 }
 
-func (myPC *pc) duplicateRAM() {
-	myPC.ram = myPC.ram * 2
+func (c *cuadrado) area() float64 {
+	return c.lado * c.lado
 }
+
+func (r *rectangulo) area() float64 {
+	return r.base * r.altura
+}
+
+func calculaArea(f figuras2D) {
+	fmt.Println(f.area())
+}
+
+// Interfaces
 
 func main() {
 
-	// Punteros y structs
-	a := 50
-	b := &a
+	myCuadrado := cuadrado{lado: 8}
+	myRectangulo := rectangulo{base: 10, altura: 5}
 
-	fmt.Println(a, b)
-	fmt.Println(*b)
+	fmt.Println(myCuadrado)
+	fmt.Println(myRectangulo)
 
-	*b = 100
-	fmt.Println(a)
+	//calculaArea(&myCuadrado)
+	//calculaArea(&myRectangulo)
 
-	mypc := pc{ram: 4, disk: 500, memory: 8, brand: "Dell"}
-
-	fmt.Println(mypc)
-
-	mypc.ping()
-
-	mypc.duplicateRAM()
-	fmt.Println(mypc)
-
-	mypc.duplicateRAM()
-	fmt.Println(mypc)
-
-	mypc.duplicateRAM()
-	fmt.Println(mypc)
-
+	myInterface := []interface{}{"hola", 12, 8.66, true}
+	fmt.Println(myInterface)
+	fmt.Println(myInterface...)
 }
