@@ -1,0 +1,6 @@
+2. descargar un paquete y probar funcionamiento
+curl http://www.google.com
+
+3. ver informacion de nuestro servidor
+curl -i http://localhost:9000
+
